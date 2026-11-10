@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    小住 · content.js
    TA 的生活痕迹：动态 / 日记 / 相册 / 查手机 / 环境台词
    ============================================================ */
@@ -402,6 +402,13 @@
   }
 
   /* ---------------- 初始化与每日维护 ---------------- */
+  /* 照片库是异步加载的（它比较大，不能挡住开机）。
+     没加载好就先不生成带图的内容，等它到了再补。 */
+  function photosReady() {
+    if (window.XZ_PHOTOS && window.XZ_PHOTOS.length) return true;
+    return window.__xzPhotosDone === true;
+  }
+
   function ensure(p) {
     const now = Date.now();
     const today = time.dayKey(now);
@@ -412,7 +419,9 @@
 
     // 相册：装好就有几张，之后每天补两张
     if (!p.photos.length) {
-      for (let i = 6; i >= 1; i--) p.photos.push(genPhoto(p, now - i * 864e5 - XZ.rnd(6) * 36e5));
+      if (photosReady()) {
+        for (let i = 6; i >= 1; i--) p.photos.push(genPhoto(p, now - i * 864e5 - XZ.rnd(6) * 36e5));
+      }
     } else {
       const lastPhotoDay = time.dayKey(p.photos[p.photos.length - 1].ts);
       if (lastPhotoDay !== today && p.photos.filter((x) => time.dayKey(x.ts) === today).length < 2) {
@@ -435,8 +444,10 @@
 
     // 动态：安装时给两条，之后每 4 小时最多一条
     if (!p.moments.length) {
-      p.moments.push(genMoment(p, now - 5 * 36e5));
-      p.moments.push(genMoment(p, now - 26 * 36e5));
+      if (photosReady()) {
+        p.moments.push(genMoment(p, now - 5 * 36e5));
+        p.moments.push(genMoment(p, now - 26 * 36e5));
+      }
     } else {
       const taMoments = p.moments.filter((m) => !m.mine);
       const lastTaTs = taMoments.length ? taMoments[0].ts : 0;

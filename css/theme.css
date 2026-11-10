@@ -325,3 +325,13 @@ html[data-theme="night"] .chip.on{ background:var(--accent); color:#171319; }
   *{ animation-duration:.01ms !important; transition-duration:.01ms !important; }
 }
 html.no-anim *{ transition:none !important; animation:none !important; }
+
+/* 开机占位：脚本还没跑起来时先给个说法，别白屏 */
+#bootHint{
+  position:absolute; inset:0; z-index:60; display:grid; place-items:center;
+  pointer-events:none; transition:opacity .3s var(--ease);
+}
+#bootHint span{
+  font-family:var(--serif); font-size:13px; letter-spacing:.28em; color:var(--ink3);
+  animation:breathe 2.4s ease-in-out infinite;
+}

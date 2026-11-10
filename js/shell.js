@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    小住 · shell.js
    开机 / 锁屏 / 桌面 / 导航 / 动作路由 / 主动消息
    ============================================================ */
@@ -156,6 +156,30 @@
     const last = msgs[msgs.length - 1];
     if (last && last.from === 'ta' && Date.now() - last.ts < 30 * 60e3) return last.text;
     return XZ.content.ambientLine(p);
+  }
+
+  function hideBootHint() {
+    const el = document.getElementById('bootHint');
+    if (el) el.remove();
+  }
+
+  /* 照片库是异步来的：到了就补上带图内容；8 秒还没到就用兜底矢量图 */
+  function watchPhotos(p) {
+    let waited = 0;
+    const timer = setInterval(() => {
+      waited += 400;
+      if (window.XZ_PHOTOS && window.XZ_PHOTOS.length) {
+        clearInterval(timer);
+        XZ.content.ensure(p);
+        refreshHome();
+        if (XZ.currentApp === 'moments' || XZ.currentApp === 'album') openApp(XZ.currentApp);
+      } else if (waited >= 8000) {
+        clearInterval(timer);
+        window.__xzPhotosDone = true;
+        XZ.content.ensure(p);
+        refreshHome();
+      }
+    }, 400);
   }
 
   function refreshHome() {
@@ -352,6 +376,7 @@
     bootAnimation(() => {
       bootHome();
       startTicker();
+      watchPhotos(XZ.activePersona());
       showView('lockscreen');
       refreshLockNotifs();
       setTimeout(() => {
@@ -602,6 +627,7 @@
 
   /* ---------------- 启动 ---------------- */
   function boot() {
+    hideBootHint();
     const params = new URLSearchParams(location.search);
     const wantDemo = params.get('demo') === '1';
     if (params.get('noanim') === '1') document.documentElement.classList.add('no-anim');
@@ -665,6 +691,7 @@
     setTimeout(() => { if (XZ.currentApp === null) refreshHome(); }, 4000);
     // 你不在的时候世界也在走：回来时补内容，他可能先开口
     setTimeout(() => catchUp(p), 900);
+    watchPhotos(p);
 
     // 一周没备份就提醒一次（只在这次打开里提示，不烦人）
     if (XZ.state.settings.remindBackup !== false) {
