@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light" data-wall="dusk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#F3EDE4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="小住">
+<title>小住 · 一台住着人的小手机</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23A8573C'/%3E%3Cpath d='M20 42V24a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H30l-6 5v-5z' fill='%23F6EFE6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/shell.css">
+<link rel="stylesheet" href="css/apps.css">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+</head>
+<body>
+<noscript><p style="padding:24px;font:16px/1.7 sans-serif">这台小手机需要浏览器开启 JavaScript 才能开机。</p></noscript>
+
+<!-- ============ 图标库 ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 7.5A3.5 3.5 0 0 1 7.5 4h9A3.5 3.5 0 0 1 20 7.5v6A3.5 3.5 0 0 1 16.5 17H11l-4.6 3.4A.6.6 0 0 1 5.4 20v-3.3A3.5 3.5 0 0 1 4 13.8z"/><circle cx="9" cy="10.5" r=".9" fill="currentColor" stroke="none"/><circle cx="12.4" cy="10.5" r=".9" fill="currentColor" stroke="none"/><circle cx="15.8" cy="10.5" r=".9" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-moments" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><circle cx="12" cy="7.6" r="1.05" fill="currentColor" stroke="none"/><circle cx="8.2" cy="13.4" r="1.05" fill="currentColor" stroke="none"/><circle cx="15.8" cy="13.4" r="1.05" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4.5 5.6c0-.9.7-1.6 1.6-1.6H11v15.4H6.1a1.6 1.6 0 0 1-1.6-1.6z"/><path d="M19.5 5.6c0-.9-.7-1.6-1.6-1.6H13v15.4h4.9a1.6 1.6 0 0 0 1.6-1.6z"/><path d="M11 19.4h2" opacity=".5"/></symbol>
+    <symbol id="i-photo" viewBox="0 0 24 24"><rect x="3.6" y="5.2" width="16.8" height="13.6" rx="3"/><circle cx="9" cy="10" r="1.5"/><path d="M4.4 16.6l4.3-3.9a1.6 1.6 0 0 1 2.1 0l2 1.8a1.6 1.6 0 0 0 2.1 0l1.4-1.2a1.6 1.6 0 0 1 2.1 0l1.9 1.7"/></symbol>
+    <symbol id="i-magnify" viewBox="0 0 24 24"><rect x="6" y="2.8" width="12" height="18.4" rx="2.6"/><path d="M10.2 5.6h3.6" opacity=".6"/><circle cx="15.6" cy="15.4" r="3.2"/><path d="M17.9 17.8l2.3 2.4"/></symbol>
+    <symbol id="i-dice" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3.6"/><circle cx="9" cy="9" r="1.15" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.15" fill="currentColor" stroke="none"/><circle cx="15" cy="9" r="1.15" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.15" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.1"/><path d="M19.2 14.4a1.6 1.6 0 0 0 .32 1.76l.06.06a1.94 1.94 0 1 1-2.74 2.74l-.06-.06a1.6 1.6 0 0 0-1.76-.32 1.6 1.6 0 0 0-.97 1.46V20a1.94 1.94 0 1 1-3.88 0v-.1a1.6 1.6 0 0 0-1.05-1.46 1.6 1.6 0 0 0-1.76.32l-.06.06a1.94 1.94 0 1 1-2.74-2.74l.06-.06a1.6 1.6 0 0 0 .32-1.76 1.6 1.6 0 0 0-1.46-.97H4a1.94 1.94 0 1 1 0-3.88h.1a1.6 1.6 0 0 0 1.46-1.05 1.6 1.6 0 0 0-.32-1.76l-.06-.06a1.94 1.94 0 1 1 2.74-2.74l.06.06a1.6 1.6 0 0 0 1.76.32H10a1.6 1.6 0 0 0 .97-1.46V4a1.94 1.94 0 1 1 3.88 0v.1a1.6 1.6 0 0 0 .97 1.46 1.6 1.6 0 0 0 1.76-.32l.06-.06a1.94 1.94 0 1 1 2.74 2.74l-.06.06a1.6 1.6 0 0 0-.32 1.76V10a1.6 1.6 0 0 0 1.46.97H20a1.94 1.94 0 1 1 0 3.88h-.1a1.6 1.6 0 0 0-1.46.97z"/></symbol>
+    <symbol id="i-manual" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><path d="M9.6 9.4a2.5 2.5 0 0 1 4.9.6c0 1.7-2.4 2-2.4 3.6"/><circle cx="12" cy="17.2" r=".85" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M14.5 5.5 8 12l6.5 6.5"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M12 19V6"/><path d="M6.5 11.5 12 6l5.5 5.5"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.4-4.4-7.4-9.3A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.4 3.1C19.4 15.6 12 20 12 20z"/></symbol>
+    <symbol id="i-comment" viewBox="0 0 24 24"><path d="M4.5 8.4A3.4 3.4 0 0 1 7.9 5h8.2a3.4 3.4 0 0 1 3.4 3.4v5a3.4 3.4 0 0 1-3.4 3.4h-4.6l-4 3v-3.2a3.4 3.4 0 0 1-3-3.4z"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="12" r="1.5" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5.5v13M5.5 12h13"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2.6"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></symbol>
+    <symbol id="i-cell" viewBox="0 0 24 24"><path d="M4 15v2M8.5 11.5v5.5M13 8v9M17.5 4.5V17" stroke-linecap="round"/></symbol>
+    <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M3.5 9.5a13 13 0 0 1 17 0M6.5 13a9 9 0 0 1 11 0M9.5 16.4a5 5 0 0 1 5 0"/><circle cx="12" cy="19.4" r="1" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-battery" viewBox="0 0 26 14"><rect x="1" y="2.4" width="21" height="9.2" rx="2.8" opacity=".45"/><rect x="2.8" y="4.1" width="15" height="5.8" rx="1.6" fill="currentColor" stroke="none"/><path d="M24 5.6v2.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.8v2.4M12 18.8v2.4M4.2 12H1.8M22.2 12h-2.4M6.5 6.5 4.8 4.8M19.2 19.2l-1.7-1.7M17.5 6.5l1.7-1.7M4.8 19.2l1.7-1.7"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 13.6A8.2 8.2 0 0 1 10.4 4a8.4 8.4 0 1 0 9.6 9.6z"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.8 7h14.4M9.5 7V5.4c0-.8.6-1.4 1.4-1.4h2.2c.8 0 1.4.6 1.4 1.4V7M6.6 7l.8 11.3c.05.9.8 1.6 1.7 1.6h5.8c.9 0 1.65-.7 1.7-1.6L17.4 7"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5.5v13M6 12.5l6 6 6-6"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 18.5v-13M6 11.5l6-6 6 6"/></symbol>
+    <symbol id="i-dice1" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3.4"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></symbol>
+  </defs>
+</svg>
+
+<div id="stage">
+  <div id="device">
+    <div id="screen">
+      <div class="wallpaper" aria-hidden="true">
+        <div class="wl wl-a"></div><div class="wl wl-b"></div><div class="wl wl-c"></div>
+        <div class="wl wl-mountain"></div>
+        <div class="wl wl-grain"></div>
+      </div>
+
+      <!-- ============ 状态栏 ============ -->
+      <div id="statusbar">
+        <span id="clockTop">9:41</span>
+        <span class="sb-right">
+          <svg class="ic sb-ic"><use href="#i-cell"/></svg>
+          <svg class="ic sb-ic"><use href="#i-wifi"/></svg>
+          <svg class="ic sb-bat"><use href="#i-battery"/></svg>
+        </span>
+      </div>
+      <div id="island" aria-hidden="true"></div>
+
+      <div id="viewport">
+
+        <!-- ============ 首次开机：捏人 ============ -->
+        <section id="setup" class="screen-view">
+          <div class="setup-wrap">
+            <div class="setup-step" data-step="1">
+              <div class="setup-brand">
+                <div class="brand-mark">小住</div>
+                <p class="brand-sub">一台住着人的小手机</p>
+              </div>
+              <p class="setup-lead">先挑一个住进来的人。<br>也可以跳过，我们随机给一位。</p>
+              <div class="persona-cards" id="personaCards"></div>
+              <button class="btn btn-primary btn-lg" data-act="setup-next">就 TA 了</button>
+              <button class="btn btn-ghost" data-act="setup-fast">不挑了，直接开机</button>
+              <p class="setup-tiny">不用注册 · 不用 API Key · 不联网也能聊</p>
+            </div>
+
+            <div class="setup-step" data-step="2" hidden>
+              <p class="setup-lead">确认一下，之后随时能改。</p>
+              <div class="field">
+                <label>TA 的名字</label>
+                <input id="fName" maxlength="12" placeholder="比如 沈屿">
+              </div>
+              <div class="field">
+                <label>TA 怎么叫你</label>
+                <input id="fCall" maxlength="12" placeholder="比如 小朋友">
+              </div>
+              <div class="field">
+                <label>你们是什么关系</label>
+                <div class="chips" id="fRelation"></div>
+              </div>
+              <div class="field">
+                <label>说话的语气</label>
+                <div class="chips" id="fVoice"></div>
+              </div>
+              <button class="btn btn-primary btn-lg" data-act="setup-start">开机</button>
+              <button class="btn btn-ghost" data-act="setup-back">返回</button>
+              <p class="setup-tiny">所有内容只存在这台设备上，随时可导出带走。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 锁屏 ============ -->
+        <section id="lockscreen" class="screen-view">
+          <div class="lock-top">
+            <div class="lock-date" id="lockDate">10月27日 星期一</div>
+            <div class="lock-time" id="lockTime">9:41</div>
+            <div class="lock-who" id="lockWho">
+              <div class="avatar avatar-xs" id="lockAvatar"></div>
+              <b id="lockName">沈屿</b>
+              <span id="lockWhere">在家 · 刚洗完碗</span>
+            </div>
+          </div>
+          <div class="lock-notifs" id="lockNotifs"></div>
+          <div class="lock-bottom">
+            <div class="lock-hint" id="lockHint">轻触屏幕</div>
+          </div>
+        </section>
+
+        <!-- ============ 桌面 ============ -->
+        <section id="home" class="screen-view">
+          <div class="home-head">
+            <div class="home-date" id="homeDate">10月27日 周一</div>
+            <div class="home-temp" id="homeTemp">21°</div>
+          </div>
+
+          <div class="widget" data-act="open-chat">
+            <div class="widget-top">
+              <div class="widget-who">
+                <div class="avatar avatar-sm" id="wAvatar"></div>
+                <div>
+                  <b id="wName">沈屿</b>
+                  <span id="wWhere">在家 · 刚洗完碗</span>
+                </div>
+              </div>
+              <span class="widget-time" id="wTime">22:41</span>
+            </div>
+            <p class="widget-line" id="wLine">水有点凉，别又光着脚在地上走。</p>
+            <div class="widget-foot">
+              <span id="wFoot">点一下，回到聊天</span>
+              <svg class="ic"><use href="#i-chat"/></svg>
+            </div>
+          </div>
+
+          <div class="app-grid" id="appGrid"></div>
+          <div class="page-dots"><i class="on"></i></div>
+
+          <div class="today-card">
+            <div class="today-head"><b>今天</b><span id="todayMeta"></span></div>
+            <button class="today-row" data-act="open-app" data-app="diary">
+              <span class="t-label">日记</span><span class="t-val" id="todayDiary">还没写</span><span class="t-chev">›</span>
+            </button>
+            <button class="today-row" data-act="open-app" data-app="moments">
+              <span class="t-label">动态</span><span class="t-val" id="todayMoment">还没有</span><span class="t-chev">›</span>
+            </button>
+            <button class="today-row" data-act="open-app" data-app="inspect">
+              <span class="t-label">TA 的手机</span><span class="t-val" id="todayInsp">没看过</span><span class="t-chev">›</span>
+            </button>
+          </div>
+
+          <div class="home-quote" id="homeQuote"></div>
+        </section>
+
+        <!-- ============ 应用层 ============ -->
+        <div id="appLayer">
+
+          <!-- 聊天 -->
+          <section class="app app--chat" data-app="chat">
+            <header class="chat-head">
+              <button class="icon-btn" data-act="close-app" aria-label="返回"><svg class="ic"><use href="#i-back"/></svg></button>
+              <div class="chat-id">
+                <div class="avatar avatar-xs" id="chatAvatar"></div>
+                <div class="chat-id-text">
+                  <b id="chatName">沈屿</b>
+                  <span id="chatStatus">在的</span>
+                </div>
+              </div>
+              <button class="icon-btn" data-act="chat-more" aria-label="更多"><svg class="ic"><use href="#i-more"/></svg></button>
+            </header>
+            <div class="chat-body">
+              <div class="chat-scroll" id="chatScroll"></div>
+            </div>
+            <button class="to-bottom" id="toBottom" data-act="to-bottom" hidden><svg class="ic"><use href="#i-down"/></svg></button>
+            <div class="composer" id="composer">
+              <button class="round-btn" data-act="quick" aria-label="快捷"><svg class="ic"><use href="#i-plus"/></svg></button>
+              <div class="input-wrap">
+                <textarea id="chatInput" rows="1" placeholder="说点什么…" maxlength="500"></textarea>
+              </div>
+              <button class="send-btn" id="sendBtn" data-act="send" aria-label="发送"><svg class="ic"><use href="#i-send"/></svg></button>
+            </div>
+          </section>
+
+          <!-- 动态 -->
+          <section class="app" data-app="moments">
+            <header class="app-head">
+              <button class="icon-btn" data-act="close-app" aria-label="返回"><svg class="ic"><use href="#i-back"/></svg></button>
+              <h1>动态</h1>
+              <button class="icon-btn" data-act="moment-new" aria-label="发一条"><svg class="ic"><use href="#i-plus"/></svg></button>
+            </header>
+            <div class="app-body">
+              <div class="mv-cover" id="mvCover">
+                <div class="mv-cover-art"></div>
+                <div class="mv-cover-info">
+                  <b id="mvName">沈屿</b>
+                  <p id="mvBio">晚上十点之后，话会多一点。</p>
+                </div>
+                <div class="avatar avatar-lg mv-avatar" id="mvAvatar"></div>
+              </div>
+              <div class="mv-list" id="mvList"></div>
+              <div class="app-footnote">TA 会看到你发的每一条</div>
+            </div>
+          </section>
+
+          <!-- 日记 -->
+          <section class="app" data-app="diary">
+            <header class="app-head">
+              <button class="icon-btn" data-act="close-app" aria-label="返回"><svg class="ic"><use href="#i-back"/></svg></button>
+              <h1>TA 的日记</h1>
+              <span class="head-spacer"></span>
+            </header>
+            <div class="app-body">
+              <div class="diary-list" id="diaryList"></div>
+            </div>
+          </section>
+
+          <!-- 相册 -->
+          <section class="app" data-app="album">
+            <header class="app-head">
+              <button class="icon-btn" data-act="close-app" aria-label="返回"><svg class="ic"><use href="#i-back"/></svg></button>
+              <h1>相册</h1>
+              <div class="head-right">
+                <span class="head-count" id="albumCount">0 张</span>
+                <button class="icon-btn" data-act="ph-add" aria-label="加一张"><svg class="ic"><use href="#i-plus"/></svg></button>
+              </div>
+            </header>
+            <div class="app-body">
+              <div class="album-grid" id="albumGrid"></div>
+            </div>
+            <div class="lightbox" id="lightbox" hidden>
+              <div class="lb-art" id="lbArt"></div>
+              <div class="lb-info">
+                <p id="lbCap">今天的云</p>
+                <span id="lbMeta"></span>
+                <div class="lb-cmts" id="lbCmts" hidden></div>
+              </div>
+              <button class="icon-btn lb-close" data-act="lb-close"><svg class="ic"><use href="#i-close"/></svg></button>
+            </div>
+          </section>
+
+          <!-- 查手机 -->
+          <section class="app" data-app="inspect">
+            <header class="app-head">
+              <button class="icon-btn" data-act="close-app" aria-label="返回"><svg class="ic"><use href="#i-back"/></svg></button>
+              <h1>TA 的手机</h1>
+              <span class="head-spacer"></span>
+            </header>
+            <div class="tabs" id="inspectTabs">
+              <button class="tab on" data-tab="notes">备忘录</button>
+              <button class="tab" data-tab="search">搜索过</button>
+              <button class="tab" data-tab="draft">草稿</button>
+            </div>
+            <div class="app-body" id="inspectBody"></div>
+          </section>
+
+          <!-- 飞行棋 -->
+          <section class="app" data-app="game">
+            <header class="app-head">
+              <button class="icon-btn" data-act="close-app" aria-label="返回"><svg class="ic"><use href="#i-back"/></svg></button>
+              <h1>飞行棋</h1>
+              <div class="head-right">
+                <span class="head-count" id="gameScore">0 : 0</span>
+                <button class="icon-btn" data-act="game-help" aria-label="怎么玩"><svg class="ic"><use href="#i-manual"/></svg></button>
+              </div>
+            </header>
+            <div class="app-body game-body">
+              <p class="game-tip" id="gameTip">谁先到终点，谁可以提一个要求。</p>              <div class="board-start" id="boardStart">
+                <span class="bs-label">起点</span>
+                <span class="pawn me"></span><span class="bs-name">你</span>
+                <span class="bs-sep">·</span>
+                <span class="pawn ta"></span><span class="bs-name" id="bsTa">TA</span>
+              </div>
+              <div class="board" id="board"></div>
+              <p class="game-legend">红色是你，绿色是 TA。浅绿色的格子有机关：前进、后退、再掷一次，或者停下来聊两句。</p>
+              <div class="game-log" id="gameLog"></div>
+              <div class="game-actions">
+                <button class="btn btn-primary" data-act="roll" id="rollBtn">掷骰子</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- 群聊 -->
+          <section class="app app--chat app--group" data-app="group">
+            <header class="chat-head">
+              <button class="icon-btn" data-act="close-app" aria-label="返回"><svg class="ic"><use href="#i-back"/></svg></button>
+              <div class="chat-id">
+                <div class="avatar avatar-xs" style="background:linear-gradient(150deg,#B7A48E,#7E6B57)">群</div>
+                <div class="chat-id-text">
+                  <b id="gpName">群聊</b>
+                  <span id="gpStatus">还没有群</span>
+                </div>
+              </div>
+              <button class="icon-btn" data-act="gp-more" aria-label="更多"><svg class="ic"><use href="#i-more"/></svg></button>
+            </header>
+            <div class="chat-body">
+              <div class="chat-scroll" id="gpScroll"></div>
+            </div>
+            <div class="composer">
+              <div class="input-wrap">
+                <textarea id="gpInput" rows="1" placeholder="在群里说点什么…" maxlength="300"></textarea>
+              </div>
+              <button class="send-btn" data-act="gp-send" aria-label="发送"><svg class="ic"><use href="#i-send"/></svg></button>
+            </div>
+          </section>
+
+          <!-- 设置 -->
+          <section class="app" data-app="settings">
+            <header class="app-head">
+              <button class="icon-btn" data-act="close-app" aria-label="返回"><svg class="ic"><use href="#i-back"/></svg></button>
+              <h1>设置</h1>
+              <span class="head-spacer"></span>
+            </header>
+            <div class="app-body settings-body" id="settingsBody"></div>
+          </section>
+
+          <!-- 说明书 -->
+          <section class="app" data-app="manual">
+            <header class="app-head">
+              <button class="icon-btn" data-act="close-app" aria-label="返回"><svg class="ic"><use href="#i-back"/></svg></button>
+              <h1>说明书</h1>
+              <span class="head-spacer"></span>
+            </header>
+            <div class="app-body manual-body" id="manualBody"></div>
+          </section>
+
+        </div>
+      </div>
+
+      <div id="homebar"><span></span></div>
+      <div id="toast" class="toast" hidden></div>
+      <div id="sheet" class="sheet" hidden>
+        <div class="sheet-mask" data-act="sheet-close"></div>
+        <div class="sheet-panel" id="sheetPanel"></div>
+      </div>
+      <div id="banner" class="banner" hidden></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/photos.js"></script>
+<script src="js/core.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/content.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/group.js"></script>
+<script src="js/apps.js"></script>
+<script src="js/shell.js"></script>
+<script>
+if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+  window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+}
+</script>
+</body>
+</html>
