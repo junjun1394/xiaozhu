@@ -489,8 +489,25 @@
     return n;
   }
 
+  /* 同理：兜底生成的相册照片也换成真的照片 */
+  function upgradePhotos(p) {
+    if (!photosReady()) return 0;
+    let n = 0;
+    (p.photos || []).forEach((ph) => {
+      if (!ph || ph.photoId || ph.img) return;
+      const used = (p.photos || []).map((x) => x.photoId).filter(Boolean);
+      const lib = pickPhotoOf(p, false, used);
+      if (!lib) return;
+      ph.photoId = lib.id;
+      ph.cap = lib.caps[0];
+      ph.place = PLACE_BY_SCENE[lib.scene] || '外面';
+      n++;
+    });
+    return n;
+  }
+
   XZ.content = {
     ensure, genMoment, genDiary, genPhoto, buildInspect, ambientLine, weatherFor,
-    todayMsgs, cnt, memOf, upgradeMoments, photosReady,
+    todayMsgs, cnt, memOf, upgradeMoments, upgradePhotos, photosReady,
   };
 })();
