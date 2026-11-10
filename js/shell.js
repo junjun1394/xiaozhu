@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    小住 · shell.js
    开机 / 锁屏 / 桌面 / 导航 / 动作路由 / 主动消息
    ============================================================ */
@@ -171,6 +171,8 @@
       if (window.XZ_PHOTOS && window.XZ_PHOTOS.length) {
         clearInterval(timer);
         XZ.content.ensure(p);
+        XZ.content.upgradeMoments(p);
+        XZ.store.save();
         refreshHome();
         if (XZ.currentApp === 'moments' || XZ.currentApp === 'album') openApp(XZ.currentApp);
       } else if (waited >= 8000) {

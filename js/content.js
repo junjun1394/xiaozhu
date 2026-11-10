@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    小住 · content.js
    TA 的生活痕迹：动态 / 日记 / 相册 / 查手机 / 环境台词
    ============================================================ */
@@ -470,8 +470,27 @@
     }
   }
 
+  /* 照片库晚到时，把之前"没图"的动态补上照片，并把首句换成这张图对应的文案 */
+  function upgradeMoments(p) {
+    if (!photosReady()) return 0;
+    let n = 0;
+    (p.moments || []).forEach((m) => {
+      if (!m || m.mine || m.photoId) return;
+      const ph = pickPhotoOf(p, false);
+      if (!ph) return;
+      m.photoId = ph.id;
+      m.artScene = ph.scene;
+      m.art = true;
+      const lines = String(m.text || '').split('\n');
+      if (lines.length) lines[0] = ph.caps[0];
+      m.text = lines.join('\n');
+      n++;
+    });
+    return n;
+  }
+
   XZ.content = {
     ensure, genMoment, genDiary, genPhoto, buildInspect, ambientLine, weatherFor,
-    todayMsgs, cnt, memOf,
+    todayMsgs, cnt, memOf, upgradeMoments, photosReady,
   };
 })();
