@@ -163,25 +163,30 @@
     if (el) el.remove();
   }
 
-  /* 照片库是异步来的：到了就补上带图内容；8 秒还没到就用兜底矢量图 */
+  /* 照片库是异步来的：到了就补上带图内容；8 秒还没到先用兜底矢量图，
+     等照片真到了再升级一次（慢网络下很重要） */
   function watchPhotos(p) {
-    let waited = 0;
+    let waited = 0, fellBack = false;
     const timer = setInterval(() => {
       waited += 400;
       if (window.XZ_PHOTOS && window.XZ_PHOTOS.length) {
         clearInterval(timer);
         XZ.content.ensure(p);
         XZ.content.upgradeMoments(p);
+        XZ.content.upgradePhotos(p);
         XZ.store.save();
         refreshHome();
         if (XZ.currentApp === 'moments' || XZ.currentApp === 'album') openApp(XZ.currentApp);
-      } else if (waited >= 8000) {
-        clearInterval(timer);
-        window.__xzPhotosDone = true;
+        return;
+      }
+      if (!fellBack && waited >= 8000) {
+        fellBack = true;
+        window.__xzPhotosDone = true;   // 先用兜底矢量图顶上
         XZ.content.ensure(p);
         refreshHome();
       }
     }, 400);
+    setTimeout(() => clearInterval(timer), 90000);
   }
 
   function refreshHome() {
