@@ -1,5 +1,5 @@
-/* 小住 service worker 1.2.0 */
-const CACHE = 'xiaozhu-1.2.0';
+/* 小住 service worker 1.2.1 */
+const CACHE = 'xiaozhu-1.2.1';
 const ASSETS = ["./","./index.html","./manifest.webmanifest","./css/theme.css","./css/shell.css","./css/apps.css","./js/core.js","./js/engine.js","./js/content.js","./js/chat.js","./js/group.js","./js/apps.js","./js/shell.js","./js/photos.js","./icons/icon-192.png","./icons/icon-512.png","./icons/apple-touch-icon.png"];
 
 self.addEventListener('install', (e) => {
